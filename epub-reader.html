@@ -9,27 +9,28 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      overflow: hidden;
     }
     #viewer {
-      height: 100vh;
       width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
   <div id="viewer"></div>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const epubUrl = urlParams.get('file');
-    if (epubUrl) {
-      const book = ePub(epubUrl);
-      const rendition = book.renderTo("viewer", {
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file");
+    if (file) {
+      var book = ePub(file);
+      var rendition = book.renderTo("viewer", {
         width: "100%",
-        height: "100%",
+        height: "100%"
       });
       rendition.display();
     } else {
-      document.body.innerHTML = "<p>No EPUB file specified in the URL.</p>";
+      document.body.innerHTML = "<p style='text-align:center;padding-top:20px;'>No file specified.</p>";
     }
   </script>
 </body>
